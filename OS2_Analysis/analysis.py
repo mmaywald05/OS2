@@ -30,7 +30,7 @@ def analyze_data(file_name, experiment_name):
     y_values = [data_count[x] for x in x_values]  # Counts for the y-axis
 
     # Plot the histogram
-    plt.figure(figsize=(12, 6))
+    plt.figure(figsize=(12, 4))
     #plt.subplot(2, 1, 1)  # First subplot for the histogram
     plt.bar(x_values, y_values, width=0.5, color='skyblue', edgecolor='black', alpha=0.7)
     plt.title(experiment_name+': Histogram of times (Filtered)')
