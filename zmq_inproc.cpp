@@ -36,7 +36,7 @@ void threadA(zmq::context_t& context) {
         // Restart Timer.
         t1 = Clock::now();
 
-        std::string m = "Message " + std::to_string(i);
+        std::string m = "M";
         socket.send(zmq::buffer(m), zmq::send_flags::none);
         //std::cout << "Thread A: Sent -> " << m << "\n";
 
@@ -44,7 +44,7 @@ void threadA(zmq::context_t& context) {
         auto result = socket.recv(message, zmq::recv_flags::none);
 
     }
-    std::string message = "kill";
+    std::string message = "K";
     socket.send(zmq::buffer(message), zmq::send_flags::none);
 }
 
@@ -59,11 +59,11 @@ void threadB(zmq::context_t& context) {
         zmq::message_t message;
         auto result = socket.recv(message, zmq::recv_flags::none);
         std::string received_message(static_cast<char*>(message.data()), message.size());
-        if(received_message == "kill"){
+        if(received_message == "K"){
             std::cout << "Kill message received" << std::endl;
             break;
         }
-        std::string accept = "accept " + received_message;
+        std::string accept = "A";
         //std::cout << "Thread B: Received -> " << received_message << "\n";
         socket.send(zmq::buffer(accept), zmq::send_flags::none);
     }

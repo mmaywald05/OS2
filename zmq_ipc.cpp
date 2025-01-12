@@ -28,7 +28,7 @@ void processA() {
             durations_raw[i-WARM_UP_ITERATIONS] = duration.count();
         }
         t1 = Clock::now();
-        std::string m = "Message " + std::to_string(i);
+        std::string m = "M";
         socket.send(zmq::buffer(m), zmq::send_flags::none);
 
         zmq::message_t message;
@@ -36,14 +36,14 @@ void processA() {
         std::string received(static_cast<char*>(message.data()), message.size());
     }
 
-    std::string kill_message = "kill";
+    std::string kill_message = "K";
     socket.send(zmq::buffer(kill_message), zmq::send_flags::none);
 
     zmq::message_t ackMessage;
     socket.recv(ackMessage, zmq::recv_flags::none);
-    std::string ack(static_cast<char*>(ackMessage.data()), ackMessage.size());
+    std::string A(static_cast<char*>(ackMessage.data()), ackMessage.size());
 
-    if (ack == "ack") {
+    if (A == "A") {
         std::cout << "\nProcessA received acknowledgment, finishing." << std::endl;
     }
 
@@ -61,14 +61,14 @@ void processB() {
         socket.recv(message, zmq::recv_flags::none);
         std::string received_message(static_cast<char*>(message.data()), message.size());
 
-        if (received_message == "kill") {
+        if (received_message == "K") {
             std::cout << "Kill message received, acknowledging." << std::endl;
-            std::string ack = "ack";
-            socket.send(zmq::buffer(ack), zmq::send_flags::none);
+            std::string A = "A";
+            socket.send(zmq::buffer(A), zmq::send_flags::none);
             break;
         }
 
-        std::string accept = "accept " + received_message;
+        std::string accept = "A" ;
         socket.send(zmq::buffer(accept), zmq::send_flags::none);
     }
 
