@@ -16,7 +16,7 @@ Es gibt noch eine optimierte Version des Spinlocks mit nidrigeren Zeiten:
 # Compile the program
 g++ -std=c++17 -pthread -o out/better_spinlock better_spinlock.cpp
 
-# Run the program
+# Run the programx^
 ./out/better_spinlock
 ```
 ---

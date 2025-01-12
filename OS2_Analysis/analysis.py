@@ -33,7 +33,7 @@ def analyze_data(file_name, experiment_name):
     plt.figure(figsize=(10,2))
     #plt.subplot(2, 1, 1)  # First subplot for the histogram
     plt.bar(x_values, y_values, width=0.5, color='skyblue', edgecolor='black', alpha=0.7)
-    plt.title(experiment_name+': Histogram of times (Filtered)')
+    plt.title(experiment_name)
     plt.xlabel('IPC mechanism duration (nanoseconds)')
     plt.ylabel('Occurrences')
 
