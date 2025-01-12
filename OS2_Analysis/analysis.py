@@ -31,7 +31,7 @@ def analyze_data(file_name, experiment_name):
 
     # Plot the histogram
     plt.figure(figsize=(12, 6))
-    plt.subplot(2, 1, 1)  # First subplot for the histogram
+    #plt.subplot(2, 1, 1)  # First subplot for the histogram
     plt.bar(x_values, y_values, width=0.5, color='skyblue', edgecolor='black', alpha=0.7)
     plt.title(experiment_name+': Histogram of times (Filtered)')
     plt.xlabel('IPC mechanism duration (nanoseconds)')
@@ -40,20 +40,20 @@ def analyze_data(file_name, experiment_name):
 
     # Add a legend
     plt.legend()
-
+    """
     # Plot the line diagram for the original data
     plt.subplot(2, 1, 2)  # Second subplot for the line diagram
     plt.plot(indices, data, color='blue', marker='o', markersize=2, linewidth=1, alpha=0.8, label='Original Data')
     plt.title(experiment_name+ ': IPC mechanism durations raw data (original order)')
     plt.xlabel('iteration index')
     plt.ylabel('time (nanoseconds)')
-
+    
     # Add a legend
     plt.legend()
 
     # Adjust layout to prevent overlap
     plt.tight_layout()
-
+    """
     plt.savefig(f"{experiment_name}.png", dpi=300, bbox_inches="tight")
 
     # Display the plot
@@ -116,9 +116,7 @@ if __name__ == '__main__':
     f_better_spin = 'data/better_spinlock.txt'
     analyze_data(f_spinlock_intraproc, "Spinlock Intraprocess")
     analyze_data(f_better_spin, "Better Spinlock")
-"""
     analyze_data(f_sem_intraproc, "Semaphores Intraprocess")
     analyze_data(f_zmq_intraproc, "ZMQ Intraprocess")
     analyze_data(f_zmq_interproc, "ZMQ Interprocess")
     analyze_data(f_docker, "Docker Containers")
-    """
