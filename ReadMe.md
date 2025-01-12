@@ -95,8 +95,9 @@ The target path needs to be adjusted for this.
 ```bash
 docker cp uds-client:/app/docker_client.txt /Users/maywald/C_projects/OS2/OS2_Analysis/data/docker.txt
 ```
----
-
 After copying, the running docker terminals can be force-quit with strg+c, as all data is collected and saved.
 
-
+---
+In /OS2_Analysis, the data is saved and analysed using a python script.
+The python script can be executed (easiest in Python IDE, e.g. PyCharm) and will read all data files, preprocess the 
+contents, display a histogram and calculate and output the confidence interval to the console.
