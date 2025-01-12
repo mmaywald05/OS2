@@ -16,7 +16,7 @@ def analyze_data(file_name, experiment_name):
     data = [x/2 for x in data]
 
 
-    data, indices = remove_outliers_iqr(data, indices)
+    #data, indices = remove_outliers_iqr(data, indices)
 
 
 
