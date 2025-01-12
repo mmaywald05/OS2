@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(OS2
         spinlock_intraproc.cpp
-        spinlock_interproc.cpp
         sem_intraproc.cpp
         docker/client.cpp
         zmq_ipc.cpp

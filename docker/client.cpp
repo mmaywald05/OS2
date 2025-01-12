@@ -3,7 +3,6 @@
 #include <sys/un.h>
 #include <unistd.h>
 #include <cstring>
-#include <chrono>
 #include <vector>
 #include <fstream>
 
@@ -11,7 +10,7 @@
 #define BUFFER_SIZE 1
 #define NUM_ITERATIONS 1000000
 #define WARM_UP_ITERATIONS 10000
-#define OUTPUT_FILE "/shared/client_latency_results.txt"
+
 
 double durations_raw[NUM_ITERATIONS];
 using Clock = std::chrono::high_resolution_clock;
@@ -92,6 +91,8 @@ int main() {
     for (int i = 0; i < NUM_ITERATIONS; ++i) {
         std::cout << i<<":"<<durations_raw[i] << std::endl;
     }
+    /* Intentional infinite loop.
+     * Allows copying the data created in a seperate terminal before container is destroyed. */
     while(true){
 
     }

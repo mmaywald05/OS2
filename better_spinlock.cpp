@@ -1,12 +1,9 @@
 #include <iostream>
 #include <atomic>
 #include <sys/mman.h>
-#include <sys/shm.h>
-#include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <thread>
-#include <chrono>
 #include <cstdlib>
 #include <map>
 #include <fstream>
@@ -27,9 +24,12 @@ double durations_raw[NUM_ITERATIONS];
 // ./spinlock_intraproc
 
 // Spinlock structure for synchronization
+/*
+ * Better Spinlock implementation according to https://rigtorp.se/spinlock/
+ * Results in a clear Speedup of ca. 30.
+ */
 struct Spinlock {
     std::atomic<bool> lock_ = {0};
-
     void acquire() noexcept {
         for (;;) {
             // Optimistically assume the lock is free on the first try

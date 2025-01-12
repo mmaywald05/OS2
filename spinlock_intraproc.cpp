@@ -1,12 +1,9 @@
 #include <iostream>
 #include <atomic>
 #include <sys/mman.h>
-#include <sys/shm.h>
-#include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <thread>
-#include <chrono>
 #include <cstdlib>
 #include <map>
 #include <fstream>
@@ -26,7 +23,10 @@ double durations_raw[NUM_ITERATIONS];
 // RUN WITH g++ -std=c++17 -pthread -o spinlock_intraproc spinlock_intraproc.cpp
 // ./spinlock_intraproc
 
-// Spinlock structure for synchronization
+/*
+ * Spinlock structure for synchronization, very primitive
+ * and, according to the internet "The worst possble implementationof a spinlock imaginable."
+ */
 struct Spinlock {
     std::atomic<bool> lock = false;
     void acquire() {
