@@ -1,0 +1,10 @@
+FROM gcc:latest
+
+# Copy the server source code
+COPY server.cpp /app/server.cpp
+
+# Build the server application
+RUN g++ -o /app/server /app/server.cpp
+
+# Set entrypoint to the server executable
+ENTRYPOINT ["/app/server"]

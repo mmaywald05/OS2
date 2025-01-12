@@ -1,0 +1,10 @@
+FROM gcc:latest
+
+# Copy the client source code
+COPY client.cpp /app/client.cpp
+
+# Build the client application
+RUN g++ -o /app/client /app/client.cpp
+
+# Set entrypoint to the client executable
+ENTRYPOINT ["/app/client"]
