@@ -11,7 +11,14 @@ g++ -std=c++17 -pthread -o out/spinlock_intraproc spinlock_intraproc.cpp
 # Run the program
 ./out/spinlock_intraproc
 ```
+Es gibt noch eine optimierte Version des Spinlocks mit nidrigeren Zeiten:
+```bash
+# Compile the program
+g++ -std=c++17 -pthread -o out/better_spinlock better_spinlock.cpp
 
+# Run the program
+./out/better_spinlock
+```
 ---
 
 ## 2. Semaphore
